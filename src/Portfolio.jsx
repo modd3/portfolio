@@ -740,7 +740,7 @@ export default function App() {
              {/* Input Wrapper */}
              <div className="relative flex items-center">
                 {/* Visible Text */}
-                <span className="whitespace-pre-wrap">{currentInput}</span>
+                <span className="whitespace-pre-wrap min-h-6 flex items-center">{currentInput}</span>
                 
                 {/* Blinking Cursor */}
                 <div className="w-2.5 h-5 bg-[#00ff41] animate-pulse ml-0.5"></div>
