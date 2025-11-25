@@ -1,0 +1,18 @@
+/* --- Tailwind Directives --- */
+/* This is where the Tailwind CSS build process injects the compiled styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Custom Styles/Overrides (Optional) --- */
+/* Add any global fonts or custom utility CSS here if needed */
+
+/* Example: Setting a global font or base background */
+@layer base {
+  body {
+    /* Using Inter font as a standard fallback */
+    font-family: 'Inter', system-ui, sans-serif; 
+    /* The main content background will be applied via Tailwind classes in JSX, 
+       but you can set the root color here if needed. */
+  }
+}
