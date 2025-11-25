@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Juma | Full Stack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff41;
+            --secondary: #ffd700;
+            --bg: #0a0a0a;
+            --terminal-bg: #1a1a1a;
+            --text: #00ff41;
+            --text-dim: #008f11;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        #boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        #boot-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .boot-line {
+            opacity: 0;
+            animation: fadeIn 0.1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: var(--primary);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        #main-content {
+            display: none;
+            min-height: 100vh;
+        }
+
+        /* Matrix rain effect */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        header {
+            padding: 2rem;
+            border-bottom: 2px solid var(--primary);
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+        }
+
+        .prompt {
+            color: var(--text-dim);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+        }
+
+        nav a::before {
+            content: '$ ';
+            color: var(--text-dim);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: var(--terminal-bg);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2::before {
+            content: '>';
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-box {
+            padding: 1.5rem;
+            background: rgba(0, 255, 65, 0.05);
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        .info-box:hover {
+            background: rgba(0, 255, 65, 0.1);
+            transform: translateX(5px);
+        }
+
+        .info-label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.8rem 1rem;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--primary);
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .project-card {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+
+        .project-status {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid var(--secondary);
+            font-size: 0.8rem;
+        }
+
+        .project-status.live {
+            background: rgba(0, 255, 65, 0.2);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .btn-secondary {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            box-shadow: 0 0 20px var(--secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 255, 65, 0.05);
+            border-left: 3px solid var(--primary);
+        }
+
+        .contact-item a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid var(--primary);
+            margin-top: 4rem;
+            color: var(--text-dim);
+        }
+
+        .ascii-art {
+            font-size: 0.6rem;
+            line-height: 1;
+            color: var(--text-dim);
+            margin: 2rem 0;
+            text-align: center;
+            white-space: pre;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.3rem; }
+            h2 { font-size: 1.4rem; }
+            nav { gap: 1rem; }
+            .container { padding: 1rem; }
+            section { padding: 1rem; }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--primary);
+            white-space: nowrap;
+            animation: typing 3s steps(40) 1s forwards, blink-caret 0.75s step-end infinite;
+            display: inline-block;
+            max-width: 0;
+        }
+
+        @keyframes typing {
+            from { max-width: 0; }
+            to { max-width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--primary); }
+        }
+
+        .glitch {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            33% { transform: translate(-2px, 2px); }
+            66% { transform: translate(2px, -2px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Boot Screen -->
+    <div id="boot-screen">
+        <div id="boot-text"></div>
+    </div>
+
+    <!-- Matrix Background -->
+    <canvas id="matrix-bg"></canvas>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <header>
+            <div class="header-content">
+                <div>
+                    <span class="prompt">root@portfolio:~$</span>
+                    <h1 class="glitch">MOHAMED_JUMA</h1>
+                </div>
+                <nav>
+                    <a href="#about">about</a>
+                    <a href="#skills">skills</a>
+                    <a href="#projects">projects</a>
+                    <a href="#contact">contact</a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- About Section -->
+            <section id="about">
+                <h2>whoami</h2>
+                <div class="ascii-art">
+    __  __       _                              _       _                            
+   |  \/  |     | |                            | |     | |                           
+   | \  / | ___ | |__   __ _ _ __ ___   ___  __| |     | |_   _ _ __ ___   __ _ 
+   | |\/| |/ _ \| '_ \ / _` | '_ ` _ \ / _ \/ _` |_____| | | | | '_ ` _ \ / _` |
+   | |  | | (_) | | | | (_| | | | | | |  __/ (_| |_____| | |_| | | | | | | (_| |
+   |_|  |_|\___/|_| |_|\__,_|_| |_| |_|\___|\__,_|     |_|\__,_|_| |_| |_|\__,_|
+                </div>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin: 2rem 0;">
+                    Self-taught Full Stack Developer with a unique journey from <span style="color: var(--secondary);">Microbiology</span> 
+                    to <span style="color: var(--secondary);">Code</span>. Currently teaching Biology & Chemistry while building production-ready 
+                    web applications. Passionate about <span style="color: var(--secondary);">EdTech</span>, 
+                    <span style="color: var(--secondary);">Cybersecurity</span>, and creating solutions that make a difference.
+                </p>
+
+                <div class="about-grid">
+                    <div class="info-box">
+                        <div class="info-label">// EDUCATION</div>
+                        <div class="info-value">BSc. Microbiology<br>Karatina University</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">// CURRENT_ROLE</div>
+                        <div class="info-value">High School Teacher<br>Bio & Chemistry (2024-Present)</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">// LOCATION</div>
+                        <div class="info-value">Nairobi, Kenya<br>Open to Remote/Relocation</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">// INTERESTS</div>
+                        <div class="info-value">Ethical Hacking<br>Backend Development<br>DevOps</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 2rem; line-height: 1.8;">
+                    🎯 <strong>Mission:</strong> Leveraging technology to solve real-world problems, especially in education. 
+                    Built school management systems currently in production, helping educators focus on teaching rather than paperwork.
+                </p>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills">
+                <h2>tech_stack --list</h2>
+                
+                <h3 style="color: var(--secondary); margin: 2rem 0 1rem;">Core Technologies</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">Node.js</div>
+                    <div class="skill-tag">Express.js</div>
+                    <div class="skill-tag">React</div>
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">Bash</div>
+                    <div class="skill-tag">PostgreSQL</div>
+                    <div class="skill-tag">MongoDB</div>
+                </div>
+
+                <h3 style="color: var(--secondary); margin: 2rem 0 1rem;">Tools & Frameworks</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">Prisma ORM</div>
+                    <div class="skill-tag">Linux CLI</div>
+                    <div class="skill-tag">Git/GitHub</div>
+                    <div class="skill-tag">RESTful APIs</div>
+                    <div class="skill-tag">JWT Auth</div>
+                </div>
+
+                <h3 style="color: var(--secondary); margin: 2rem 0 1rem;">Cybersecurity & Networking</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">Kali Linux</div>
+                    <div class="skill-tag">Nmap</div>
+                    <div class="skill-tag">Gobuster</div>
+                    <div class="skill-tag">SQLMap</div>
+                    <div class="skill-tag">Web Recon</div>
+                    <div class="skill-tag">HackTheBox</div>
+                    <div class="skill-tag">Networking</div>
+                </div>
+
+                <p style="margin-top: 2rem; padding: 1rem; background: rgba(0,255,65,0.05); border-left: 3px solid var(--primary);">
+                    📚 Currently pursuing: <strong>Ethical Hacking Certification</strong> (NetAcad) | Active on HackTheBox challenges
+                </p>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects">
+                <h2>ls -la ~/projects</h2>
+
+                <!-- EduTrak -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">📚 EduTrak</h3>
+                        <span class="project-status">IN DEVELOPMENT</span>
+                    </div>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        Next-generation school management system supporting Kenya's multi-curriculum education (CBC + 8-4-4 system). 
+                        Features multi-tenant architecture allowing multiple schools to operate independently on the same platform.
+                    </p>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        <strong>Key Features:</strong> Multi-tenant support, curriculum-specific grading, role-based access control, 
+                        comprehensive reporting, student/parent portals.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Prisma</span>
+                        <span class="tech-tag">JWT</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/modd3/edutrak" class="btn" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+                <!-- School Management -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">🎓 School Management System</h3>
+                        <span class="project-status live">LIVE IN PRODUCTION</span>
+                    </div>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        Full-featured school management platform currently deployed and actively used. Built while teaching to streamline 
+                        student record management, grading, and report generation. Handles multi-user roles (admin, teachers, students).
+                    </p>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        <strong>Impact:</strong> Reduced administrative workload by 70%, enabling teachers to focus on education rather than paperwork.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MERN Stack</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://school-management-o50k.onrender.com" class="btn btn-secondary" target="_blank">Live Demo</a>
+                        <a href="https://github.com/modd3/school-management" class="btn" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+                <!-- AI Prompt Builder -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">🤖 AI Prompt Builder</h3>
+                        <span class="project-status">IN DEVELOPMENT</span>
+                    </div>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        Social platform for AI enthusiasts to create, test, edit, and share prompts for various AI models. 
+                        Think Reddit meets Prompt Engineering. Users can collaborate, iterate on prompts, and discover what works best.
+                    </p>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        <strong>Features:</strong> User authentication, prompt testing with multiple AI models, community sharing, 
+                        version control for prompts, upvoting/commenting system.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">MERN Stack</span>
+                        <span class="tech-tag">AI APIs</span>
+                        <span class="tech-tag">OAuth</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/modd3/ai-prompt-builder" class="btn" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+                <!-- Proxy Xtractor -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">🔒 Proxy-Xtractor</h3>
+                        <span class="project-status">STABLE</span>
+                    </div>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        Automated tool for penetration testers and security researchers. Scrapes free SOCKS5 proxies from freeproxy.world 
+                        and automatically configures them in proxychains4 for use with Kali Linux security tools.
+                    </p>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        <strong>Use Case:</strong> Streamlines the workflow for ethical hackers who need quick proxy rotation during security assessments.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Bash</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Web Scraping</span>
+                        <span class="tech-tag">Kali Linux</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/modd3/proxy-xtractor" class="btn" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+                <!-- IP2Binary -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">🔢 IP2Binary</h3>
+                        <span class="project-status">STABLE</span>
+                    </div>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        CLI utility for network engineers and students. Converts IPv4 addresses to binary representation and vice versa. 
+                        Also handles decimal to binary conversion for general-purpose use.
+                    </p>
+                    <p style="margin: 1rem 0; line-height: 1.8;">
+                        <strong>Educational Tool:</strong> Helps students understand IP addressing and subnetting at the binary level.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Bash</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Networking</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/modd3/ip2binary" class="btn" target="_blank">View Code</a>
+                    </div>
+                </div>
+
+                <p style="margin-top: 3rem; padding: 1.5rem; background: rgba(255,215,0,0.1); border-left: 3px solid var(--secondary); line-height: 1.8;">
+                    💡 <strong>Open to Collaboration:</strong> All projects are open source and actively maintained. 
+                    Contributions, suggestions, and feedback are always welcome!
+                </p>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact">
+                <h2>contact --verbose</h2>
+                <p style="margin-bottom: 2rem; line-height: 1.8;">
+                    Looking for opportunities in <strong>Full Stack Development</strong>, <strong>Backend Engineering</strong>, 
+                    or <strong>DevOps</strong>. Particularly interested in EdTech and Cybersecurity. Open to remote positions and relocation.
+                </p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:mohamj876@gmail.com">mohamj876@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>💼</span>
+                        <a href="https://www.linkedin.com/in/mohamed-juma-165288317" target="_blank">LinkedIn Profile</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>💻</span>
+                        <a href="https://github.com/modd3" target="_blank">github.com/modd3</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Nairobi, Kenya</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; text-align: center;">
+                    <a href="mailto:mohamj876@gmail.com" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                        $ send_message --to=mohamed
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>root@portfolio:~$ exit</p>
+            <p style="margin-top: 1rem;">© 2024 Mohamed Juma | Built with passion, powered by curiosity</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">From Microbiology to Microservices 🧬 → 💻</p>
+        </footer>
+    </div>
+
+    <script>
+        // Boot sequence
+        const bootSequence = [
+            'Initializing system...',
+            'Loading kernel modules... [OK]',
+            'Starting network services... [OK]',
+            'Mounting file systems... [OK]',
+            'Loading user profile: mohamed_juma',
+            'Checking credentials... [VERIFIED]',
+            'Education: BSc. Microbiology ✓',
+            'Skills: Full Stack Development ✓',
+            'Experience: Teaching + Coding ✓',
+            'Passion: EdTech + Cybersecurity ✓',
+            'Status: Ready for opportunities',
+            '',
+            'System ready. Welcome to portfolio.sh',
+            'Launching interface in 3...',
+            '2...',
+            '1...',
+            ''
+        ];
+
+        const bootTextEl = document.getElementById('boot-text');
+        let lineIndex = 0;
+
+        function displayBootLine() {
+            if (lineIndex < bootSequence.length) {
+                const line = document.createElement('div');
+                line.className = 'boot-line';
+                line.textContent = bootSequence[lineIndex];
+                line.style.animationDelay = '0s';
+                bootTextEl.appendChild(line);
+                lineIndex++;
+                setTimeout(displayBootLine, 150);
+            } else {
+                setTimeout(() => {
+                    document.getElementById('boot-screen').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                }, 500);
+            }
+        }
+
+        displayBootLine();
+
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/~';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
