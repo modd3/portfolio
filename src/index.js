@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 import { createRoot } from 'react-dom/client';
 import App from './Portfolio.jsx';
 // We assume CSS/Tailwind imports would be configured here in a standard setup.
