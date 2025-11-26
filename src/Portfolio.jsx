@@ -170,16 +170,22 @@ const Typewriter = ({ text, speed = 30, delay = 0, className = "", cursorColor =
   }, [startTyping, displayedText, text, speed]);
 
   return (
-    // FIX: Changed root element from 'div' to 'span' to avoid DOM nesting errors (div inside p).
-    <span ref={ref} className={`${className} inline-block`}>
+    <span 
+      ref={ref} 
+      // FIX: Added 'min-h-[1em]' and 'min-w-[5px]' so the IntersectionObserver can detect the element
+      className={`${className} inline-block min-h-[1em] min-w-[5px]`}
+    >
       {displayedText}
+      {/* Cursor logic */}
       {startTyping && displayedText.length < text.length && (
-        <span className="inline-block w-2 h-[1em] ml-1 animate-pulse align-middle" style={{ backgroundColor: cursorColor }} />
+        <span 
+          className="inline-block w-2 h-[1em] ml-1 animate-pulse align-middle" 
+          style={{ backgroundColor: cursorColor }} 
+        />
       )}
     </span>
   );
 };
-
 // 3. Matrix Background Component (Fixed)
 const MatrixBackground = () => {
   const canvasRef = useRef(null);
@@ -541,7 +547,7 @@ export default function App() {
              <div className="max-w-6xl mx-auto flex justify-between items-center">
                 <div className="flex flex-col">
                   <span className="text-[#008f11] text-xs">root@portfolio:~$</span>
-                  <div className="text-xl sm:text-2xl text-[#ffd700] font-bold tracking-wider">
+                  <div className="text-xl sm:text-2xl text-[#ffd700] font-bold tracking-wider min-h-[32px] flex items-center">
                     <LoopingTypewriter text="MOHAMED_JUMA" typeSpeed={150} deleteSpeed={70} pauseTime={2500} />
                   </div>
                 </div>
@@ -590,10 +596,10 @@ export default function App() {
              </section>
 
              {/* Skills Section */}
-             <section id="skills">
+             <section id="skills &">
                 <div className="flex items-center gap-4 mb-6 text-[#ffd700] text-3xl">
                   <span className="text-[#00ff41] text-4xl font-light">&gt;</span>
-                  <Typewriter text="tech_stack" delay={200} speed={100} cursorColor="#ffd700" />
+                  <Typewriter text="tech_stack --list" delay={200} speed={100} cursorColor="#ffd700" />
                 </div>
                 <div className="bg-[#1a1a1a] border-2 border-[#00ff41] p-6 sm:p-8 rounded-lg">
                   <div className="space-y-8">
@@ -653,7 +659,7 @@ export default function App() {
              <section id="contact" className="pb-10">
                 <div className="flex items-center gap-4 mb-6 text-[#ffd700] text-3xl">
                   <span className="text-[#00ff41] text-4xl font-light">&gt;</span>
-                  <Typewriter text="contact" delay={200} speed={100} cursorColor="#ffd700" />
+                  <Typewriter text="contact --verbose" delay={200} speed={100} cursorColor="#ffd700" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                    <a href="mailto:mohamj876@gmail.com" className="flex flex-col items-center justify-center p-8 bg-[#00ff41]/5 border-2 border-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-all group">
@@ -740,7 +746,7 @@ export default function App() {
              {/* Input Wrapper */}
              <div className="relative flex items-center">
                 {/* Visible Text */}
-                <span className="whitespace-pre-wrap">{currentInput}</span>
+                <span className="whitespace-pre-wrap min-h-6 flex items-center">{currentInput}</span>
                 
                 {/* Blinking Cursor */}
                 <div className="w-2.5 h-5 bg-[#00ff41] animate-pulse ml-0.5"></div>
