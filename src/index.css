@@ -16,3 +16,18 @@
        but you can set the root color here if needed. */
   }
 }
+
+/* Add this to your global CSS file (e.g., globals.css) */
+
+.scrollbar-hide {
+  /* Firefox */
+  scrollbar-width: none;
+  
+  /* Safari and Chrome */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* For WebKit (Chrome, Safari) */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
