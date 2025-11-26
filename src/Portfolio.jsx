@@ -590,10 +590,10 @@ export default function App() {
              </section>
 
              {/* Skills Section */}
-             <section id="skills">
+             <section id="skills &">
                 <div className="flex items-center gap-4 mb-6 text-[#ffd700] text-3xl">
                   <span className="text-[#00ff41] text-4xl font-light">&gt;</span>
-                  <Typewriter text="tech_stack" delay={200} speed={100} cursorColor="#ffd700" />
+                  <Typewriter text="tech_stack --list" delay={200} speed={100} cursorColor="#ffd700" />
                 </div>
                 <div className="bg-[#1a1a1a] border-2 border-[#00ff41] p-6 sm:p-8 rounded-lg">
                   <div className="space-y-8">
@@ -653,7 +653,7 @@ export default function App() {
              <section id="contact" className="pb-10">
                 <div className="flex items-center gap-4 mb-6 text-[#ffd700] text-3xl">
                   <span className="text-[#00ff41] text-4xl font-light">&gt;</span>
-                  <Typewriter text="contact" delay={200} speed={100} cursorColor="#ffd700" />
+                  <Typewriter text="contact --verbose" delay={200} speed={100} cursorColor="#ffd700" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                    <a href="mailto:mohamj876@gmail.com" className="flex flex-col items-center justify-center p-8 bg-[#00ff41]/5 border-2 border-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-all group">
