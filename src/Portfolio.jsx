@@ -170,16 +170,22 @@ const Typewriter = ({ text, speed = 30, delay = 0, className = "", cursorColor =
   }, [startTyping, displayedText, text, speed]);
 
   return (
-    // FIX: Changed root element from 'div' to 'span' to avoid DOM nesting errors (div inside p).
-    <span ref={ref} className={`${className} inline-block`}>
+    <span 
+      ref={ref} 
+      // FIX: Added 'min-h-[1em]' and 'min-w-[5px]' so the IntersectionObserver can detect the element
+      className={`${className} inline-block min-h-[1em] min-w-[5px]`}
+    >
       {displayedText}
+      {/* Cursor logic */}
       {startTyping && displayedText.length < text.length && (
-        <span className="inline-block w-2 h-[1em] ml-1 animate-pulse align-middle" style={{ backgroundColor: cursorColor }} />
+        <span 
+          className="inline-block w-2 h-[1em] ml-1 animate-pulse align-middle" 
+          style={{ backgroundColor: cursorColor }} 
+        />
       )}
     </span>
   );
 };
-
 // 3. Matrix Background Component (Fixed)
 const MatrixBackground = () => {
   const canvasRef = useRef(null);
@@ -541,7 +547,7 @@ export default function App() {
              <div className="max-w-6xl mx-auto flex justify-between items-center">
                 <div className="flex flex-col">
                   <span className="text-[#008f11] text-xs">root@portfolio:~$</span>
-                  <div className="text-xl sm:text-2xl text-[#ffd700] font-bold tracking-wider">
+                  <div className="text-xl sm:text-2xl text-[#ffd700] font-bold tracking-wider min-h-[32px] flex items-center">
                     <LoopingTypewriter text="MOHAMED_JUMA" typeSpeed={150} deleteSpeed={70} pauseTime={2500} />
                   </div>
                 </div>
