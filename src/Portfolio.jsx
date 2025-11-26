@@ -36,6 +36,23 @@ const ASCII_ART = `
 ██████████████      ████      ███  ████  ██  ████  █████████████████████████
 `;
 
+const ASCII_ART_SM = `
+███╗   ███╗ ██████╗ ██╗  ██╗ █████╗ 
+████╗ ████║██╔═══██╗██║  ██║██╔══██╗
+██╔████╔██║██║   ██║███████║███████║
+██║╚██╔╝██║██║   ██║██╔══██║██╔══██║
+██║ ╚═╝ ██║╚██████╔╝██║  ██║██║  ██║
+╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+                                    
+     ██╗██╗   ██╗███╗   ███╗ █████╗ 
+     ██║██║   ██║████╗ ████║██╔══██╗
+     ██║██║   ██║██╔████╔██║███████║
+██   ██║██║   ██║██║╚██╔╝██║██╔══██║
+╚█████╔╝╚██████╔╝██║ ╚═╝ ██║██║  ██║
+ ╚════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝
+                                    
+`
+
 const COMMANDS = [
   { cmd: 'help', desc: 'List available commands' },
   { cmd: 'about', desc: 'Display profile information' },
@@ -576,10 +593,15 @@ case 'about':
                 <div className="bg-[#1a1a1a] border-2 border-[#00ff41] p-6 sm:p-8 rounded-lg shadow-[0_0_20px_rgba(0,255,65,0.1)]">
    
    <div className="w-full flex justify-center mb-6">
-      <pre className="text-[5px] xs:text-[8px] sm:text-[10px] md:text-xs text-[#008f11] leading-none whitespace-pre select-none overflow-x-hidden">
-        {ASCII_ART}
-      </pre>
-   </div>
+   {/* Large Screen Art (Hidden on Mobile) */}
+   <pre className="hidden sm:block text-[5px] xs:text-[8px] sm:text-[10px] md:text-xs text-[#008f11] leading-none whitespace-pre select-none overflow-x-hidden">
+     {ASCII_ART}
+   </pre>
+   {/* Small Screen Art (Visible on Mobile) */}
+   <pre className="block sm:hidden text-[4px] leading-none text-[#008f11] whitespace-pre select-none overflow-x-hidden">
+     {ASCII_ART_SM}
+   </pre>
+</div>
 
    <div className="text-lg leading-relaxed mb-6 min-h-[80px]">
                     
