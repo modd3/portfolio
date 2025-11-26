@@ -352,41 +352,47 @@ export default function App() {
         setTimeout(() => setMode('gui'), 500);
         break;
 
-      case 'about':
-        addToHistory({
-          type: 'output',
-          content: (
-            <div className="space-y-4 max-w-3xl animate-in fade-in duration-300">
-              <pre className="text-[10px] sm:text-xs leading-none text-[#008f11] select-none overflow-hidden">{ASCII_ART}</pre>
-              <div className="p-4 border-l-2 border-[#00ff41] bg-[#00ff41]/5 mt-4">
-                <p className="leading-relaxed">
-                  Self-taught Full Stack Developer with a unique journey from <span className="text-[#ffd700]">Microbiology</span> to <span className="text-[#ffd700]">Code</span>. 
-                  Currently teaching Biology & Chemistry while building production-ready web applications.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                   <div>
-                      <div className="text-[#008f11] text-sm">// EDUCATION</div>
-                      <div>BSc. Microbiology, Karatina University</div>
-                   </div>
-                   <div>
-                      <div className="text-[#008f11] text-sm">// CURRENT_ROLE</div>
-                      <div>High School Teacher (Bio & Chem)</div>
-                   </div>
-                   <div>
-                      <div className="text-[#008f11] text-sm">// LOCATION</div>
-                      <div>Nairobi, Kenya</div>
-                   </div>
-                   <div>
-                      <div className="text-[#008f11] text-sm">// INTERESTS</div>
-                      <div>EdTech, Cybersecurity, DevOps</div>
-                   </div>
-                </div>
-              </div>
-            </div>
-          )
-        });
-        break;
-
+  
+case 'about':
+  addToHistory({
+    type: 'output',
+    content: (
+      <div className="space-y-4 max-w-3xl animate-in fade-in duration-300">
+        {/* FIX: Centered wrapper + Responsive font size (5px on mobile -> xs on desktop) */}
+        <div className="w-full flex justify-center">
+             <pre className="text-[5px] xs:text-[7px] sm:text-[10px] md:text-xs leading-none text-[#008f11] select-none whitespace-pre overflow-x-hidden">
+                {ASCII_ART}
+             </pre>
+        </div>
+        
+        <div className="p-4 border-l-2 border-[#00ff41] bg-[#00ff41]/5 mt-4">
+          <p className="leading-relaxed">
+            Self-taught Full Stack Developer with a unique journey from <span className="text-[#ffd700]">Microbiology</span> to <span className="text-[#ffd700]">Code</span>. 
+            Currently teaching Biology & Chemistry while building production-ready web applications.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+             <div>
+                <div className="text-[#008f11] text-sm">// EDUCATION</div>
+                <div>BSc. Microbiology, Karatina University</div>
+             </div>
+             <div>
+                <div className="text-[#008f11] text-sm">// CURRENT_ROLE</div>
+                <div>High School Teacher (Bio & Chem)</div>
+             </div>
+             <div>
+                <div className="text-[#008f11] text-sm">// LOCATION</div>
+                <div>Nairobi, Kenya</div>
+             </div>
+             <div>
+                <div className="text-[#008f11] text-sm">// INTERESTS</div>
+                <div>EdTech, Cybersecurity, DevOps</div>
+             </div>
+          </div>
+        </div>
+      </div>
+    )
+  });
+  break;
       case 'skills':
         addToHistory({
           type: 'output',
@@ -568,11 +574,15 @@ export default function App() {
                   <Typewriter text="whoami" delay={200} speed={100} cursorColor="#ffd700" />
                 </div>
                 <div className="bg-[#1a1a1a] border-2 border-[#00ff41] p-6 sm:p-8 rounded-lg shadow-[0_0_20px_rgba(0,255,65,0.1)]">
-                   <pre className="text-[8px] sm:text-[10px] text-[#008f11] leading-none mb-6 overflow-hidden hidden sm:block">
-                     {ASCII_ART}
-                   </pre>
-                   <div className="text-lg leading-relaxed mb-6 min-h-[80px]">
-                     {/* The Typewriter component now renders a <span>, resolving the div inside p error. */}
+   
+   <div className="w-full flex justify-center mb-6">
+      <pre className="text-[5px] xs:text-[8px] sm:text-[10px] md:text-xs text-[#008f11] leading-none whitespace-pre select-none overflow-x-hidden">
+        {ASCII_ART}
+      </pre>
+   </div>
+
+   <div className="text-lg leading-relaxed mb-6 min-h-[80px]">
+                    
                      <Typewriter 
                        text="Self-taught Full Stack Developer with a unique journey from Microbiology to Code. Currently teaching Biology & Chemistry while building production-ready web applications." 
                        speed={20}
@@ -771,11 +781,11 @@ export default function App() {
         </div>
 
         {/* Hint Footer */}
-        <div className="fixed bottom-0 left-0 w-full bg-[#1a1a1a] text-[#008f11] text-xs p-2 text-center border-t border-[#00ff41]/30 hidden md:block">
-           <span className="mx-2">[TAB] Auto-complete</span>
-           <span className="mx-2">[↑/↓] History</span>
-           <span className="mx-2">[GUI] Switch Mode</span>
-        </div>
+<div className="fixed bottom-0 left-0 w-full bg-[#1a1a1a] text-[#008f11] text-xs p-2 text-center border-t border-[#00ff41]/30 z-50">
+   <span className="mx-2 inline-block">[TAB] Auto-complete</span>
+   <span className="mx-2 inline-block">[↑/↓] History</span>
+   <span className="mx-2 inline-block">[GUI] Switch Mode</span>
+</div>
       </div>
     </div>
   );
