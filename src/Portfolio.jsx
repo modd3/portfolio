@@ -418,7 +418,7 @@ case 'about':
               <div>
                 <h3 className="text-[#ffd700] mb-2">Core Technologies</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'Express.js', 'React', 'Python', 'Bash', 'PostgreSQL', 'MongoDB'].map(s => (
+                  {['Node.js', 'Express.js', 'Vite + React', 'Python', 'Bash', 'PostgreSQL', 'MongoDB'].map(s => (
                     <span key={s} className="px-2 py-1 border border-[#00ff41] bg-[#00ff41]/10 text-sm hover:bg-[#00ff41] hover:text-black transition-colors cursor-default">{s}</span>
                   ))}
                 </div>
@@ -426,7 +426,7 @@ case 'about':
               <div>
                 <h3 className="text-[#ffd700] mb-2">Tools & Frameworks</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['Prisma ORM', 'Linux CLI', 'Git/GitHub', 'RESTful APIs', 'JWT Auth'].map(s => (
+                  {['Prisma ORM', 'Linux CLI', 'Git/GitHub', 'RESTful APIs', 'JWT Auth', 'Docker'].map(s => (
                     <span key={s} className="px-2 py-1 border border-[#008f11] bg-[#008f11]/10 text-[#008f11] text-sm">{s}</span>
                   ))}
                 </div>
@@ -702,7 +702,7 @@ case 'about':
                       <Github size={32} className="mb-4 group-hover:scale-110 transition-transform" />
                       <span>GitHub</span>
                    </a>
-                   <a href="#" className="flex flex-col items-center justify-center p-8 bg-[#00ff41]/5 border-2 border-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-all group">
+                   <a href="https://www.linkedin.com/in/mohamed-juma-165288317?trk=contact-info" className="flex flex-col items-center justify-center p-8 bg-[#00ff41]/5 border-2 border-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-all group">
                       <Linkedin size={32} className="mb-4 group-hover:scale-110 transition-transform" />
                       <span>LinkedIn</span>
                    </a>
