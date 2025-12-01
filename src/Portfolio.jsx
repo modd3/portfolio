@@ -298,7 +298,7 @@ export default function App() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [history, currentInput]);
+  }, [history, currentInput, isTyping]);
 
   // Initial Auto-Type on Boot
   useEffect(() => {
@@ -722,7 +722,7 @@ export default function App() {
         {/* Scrollable Content Area */}
         <div 
           ref={scrollRef} 
-          className="flex-1 overflow-y-auto scrollbar-hide space-y-2 pb-20"
+          className="flex-1 overflow-y-auto scrollbar-hide space-y-2 pb-48 sm:pb-32" 
         >
           {/* Welcome Message */}
           <div className="mb-6 space-y-2">
