@@ -28,7 +28,7 @@ const ASCII_ART = `
 ▓        ▓▓  ▓▓▓▓  ▓▓        ▓▓  ▓▓▓▓  ▓▓        ▓▓      ▓▓▓▓  ▓▓▓▓  ▓▓▓▓▓▓▓
 █  █  █  ██  ████  ██  ████  ██        ██  █  █  ██  ████████  ████  ███████
 █  ████  ███      ███  ████  ██  ████  ██  ████  ██        ██       ████████
-                                                                            
+                                                              
 ░░░░░░░░░░░░░        ░░  ░░░░  ░░  ░░░░  ░░░      ░░░░░░░░░░░░░░░░░░░░░░░░░░
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒   ▒▒   ▒▒  ▒▒▒▒  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ▓▓  ▓▓▓▓  ▓▓        ▓▓  ▓▓▓▓  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
@@ -50,19 +50,7 @@ const ASCII_ART_SM = `
 ██   ██║██║   ██║██║╚██╔╝██║██╔══██║
 ╚█████╔╝╚██████╔╝██║ ╚═╝ ██║██║  ██║
  ╚════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝
-                                    
-`
-
-const COMMANDS = [
-  { cmd: 'help', desc: 'List available commands' },
-  { cmd: 'about', desc: 'Display profile information' },
-  { cmd: 'skills', desc: 'List technical skills' },
-  { cmd: 'projects', desc: 'View project portfolio' },
-  { cmd: 'contact', desc: 'Display contact information' },
-  { cmd: 'gui', desc: 'Switch to standard website view' },
-  { cmd: 'clear', desc: 'Clear terminal history' },
-  { cmd: 'whoami', desc: 'Display current user' },
-];
+`;
 
 const PROJECTS = [
   {
@@ -108,6 +96,15 @@ const PROJECTS = [
   }
 ];
 
+const BUTTONS = [
+  { label: 'About Me', cmd: 'about', icon: <Terminal size={14} /> },
+  { label: 'My Skills', cmd: 'skills', icon: <Cpu size={14} /> },
+  { label: 'View Projects', cmd: 'projects', icon: <Code size={14} /> },
+  { label: 'Contact Info', cmd: 'contact', icon: <Mail size={14} /> },
+  { label: 'Switch to GUI', cmd: 'gui', icon: <ExternalLink size={14} /> },
+  { label: 'Clear Screen', cmd: 'clear', icon: <Command size={14} /> },
+];
+
 /* --- ANIMATION COMPONENTS --- */
 
 // Hook to check if element is in view
@@ -133,7 +130,6 @@ function useOnScreen(ref, rootMargin = "0px") {
 const LoopingTypewriter = ({ text, typeSpeed = 100, deleteSpeed = 50, pauseTime = 2000 }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-
   useEffect(() => {
     const handleTyping = () => {
       if (!isDeleting) {
@@ -154,7 +150,6 @@ const LoopingTypewriter = ({ text, typeSpeed = 100, deleteSpeed = 50, pauseTime 
     const timer = setTimeout(handleTyping, isDeleting ? deleteSpeed : typeSpeed);
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, text, typeSpeed, deleteSpeed, pauseTime]);
-
   return (
     <span className="inline-flex items-center">
       {displayedText}
@@ -169,14 +164,12 @@ const Typewriter = ({ text, speed = 30, delay = 0, className = "", cursorColor =
   const [startTyping, setStartTyping] = useState(false);
   const ref = useRef(null);
   const onScreen = useOnScreen(ref, "-50px");
-
   useEffect(() => {
     if (onScreen) {
       const timer = setTimeout(() => setStartTyping(true), delay);
       return () => clearTimeout(timer);
     }
   }, [onScreen, delay]);
-
   useEffect(() => {
     if (startTyping && displayedText.length < text.length) {
       const timer = setTimeout(() => {
@@ -185,11 +178,9 @@ const Typewriter = ({ text, speed = 30, delay = 0, className = "", cursorColor =
       return () => clearTimeout(timer);
     }
   }, [startTyping, displayedText, text, speed]);
-
   return (
     <span 
       ref={ref} 
-      // FIX: Added 'min-h-[1em]' and 'min-w-[5px]' so the IntersectionObserver can detect the element
       className={`${className} inline-block min-h-[1em] min-w-[5px]`}
     >
       {displayedText}
@@ -203,10 +194,10 @@ const Typewriter = ({ text, speed = 30, delay = 0, className = "", cursorColor =
     </span>
   );
 };
-// 3. Matrix Background Component (Fixed)
+
+// 3. Matrix Background Component
 const MatrixBackground = () => {
   const canvasRef = useRef(null);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -217,7 +208,6 @@ const MatrixBackground = () => {
     const fontSize = 14;
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/~';
 
-    // Initialize/Reset canvas dimensions and drops
     const initMatrix = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -226,7 +216,6 @@ const MatrixBackground = () => {
       drops = Array(columns).fill(1);
     };
 
-    // Handle resize
     window.addEventListener('resize', initMatrix);
     initMatrix(); // Initial setup
 
@@ -258,7 +247,6 @@ const MatrixBackground = () => {
       clearTimeout(animationFrameId);
     };
   }, []);
-
   return (
     <canvas 
       ref={canvasRef} 
@@ -271,7 +259,6 @@ const MatrixBackground = () => {
 // 4. Boot Screen Component
 const BootScreen = ({ onComplete }) => {
   const [lines, setLines] = useState([]);
-
   useEffect(() => {
     let delay = 0;
     BOOT_SEQUENCE.forEach((line, index) => {
@@ -284,7 +271,6 @@ const BootScreen = ({ onComplete }) => {
       }, delay);
     });
   }, [onComplete]);
-
   return (
     <div className="fixed inset-0 bg-black z-50 flex flex-col items-start justify-center p-8 font-mono text-[#00ff41] overflow-hidden">
       <div className="max-w-3xl w-full space-y-1">
@@ -304,39 +290,65 @@ export default function App() {
   // Terminal State
   const [history, setHistory] = useState([]);
   const [currentInput, setCurrentInput] = useState('');
-  const [commandHistory, setCommandHistory] = useState([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef(null);
-  const inputRef = useRef(null);
 
   // Auto-scroll to bottom of terminal
   useLayoutEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [history]);
+  }, [history, currentInput, isTyping]);
 
-  // Focus input on click
-  const focusInput = () => inputRef.current?.focus();
+  // Initial Auto-Type on Boot
+  useEffect(() => {
+    if (!booting && mode === 'terminal' && history.length === 0) {
+        // Small delay then type 'whoami' automatically to welcome user
+        setTimeout(() => {
+            simulateCommand('whoami');
+        }, 500);
+    }
+  }, [booting, mode]);
 
   const addToHistory = (content) => {
     setHistory(prev => [...prev, content]);
   };
 
+  const simulateCommand = async (cmd) => {
+    if (isTyping) return;
+    setIsTyping(true);
+    
+    // Typing animation logic
+    const chars = cmd.split('');
+    let typed = '';
+    
+    // Recursive typing function
+    const typeChar = (index) => {
+      if (index < chars.length) {
+        typed += chars[index];
+        setCurrentInput(typed);
+        // Randomize typing speed slightly for realism (30-80ms)
+        setTimeout(() => typeChar(index + 1), 30 + Math.random() * 50);
+      } else {
+        // Finished typing, execute after small pause
+        setTimeout(() => {
+            handleCommand(cmd);
+            setCurrentInput('');
+            setIsTyping(false);
+        }, 300);
+      }
+    };
+    
+    typeChar(0);
+  };
+
   const handleCommand = (cmd) => {
     const trimmedCmd = cmd.trim().toLowerCase();
-    
     // Add command line to history
     addToHistory({
       type: 'command',
       content: trimmedCmd
     });
-
-    // Add to command history for up/down arrows
-    if (trimmedCmd) {
-      setCommandHistory(prev => [...prev, trimmedCmd]);
-      setHistoryIndex(-1);
-    }
 
     // Process Command
     switch (trimmedCmd) {
@@ -345,12 +357,7 @@ export default function App() {
           type: 'output',
           content: (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
-              {COMMANDS.map(c => (
-                <div key={c.cmd} className="flex items-center gap-4">
-                  <span className="text-[#ffd700] min-w-[100px]">{c.cmd}</span>
-                  <span className="text-[#008f11]">{c.desc}</span>
-                </div>
-              ))}
+              <div className="text-[#008f11]">Click the buttons below to interact with the system.</div>
             </div>
           )
         });
@@ -362,6 +369,12 @@ export default function App() {
 
       case 'whoami':
         addToHistory({ type: 'output', content: 'root@portfolio:~/mohamed_juma' });
+        // Auto-trigger about after whoami for smooth intro
+        setTimeout(() => {
+            if(!history.some(h => h.content?.props?.children?.[0]?.props?.children?.includes && h.content.props.children[0].props.children.includes(ASCII_ART))) {
+                handleCommand('about');
+            }
+        }, 500);
         break;
 
       case 'gui':
@@ -369,47 +382,47 @@ export default function App() {
         setTimeout(() => setMode('gui'), 500);
         break;
 
-  
-case 'about':
-  addToHistory({
-    type: 'output',
-    content: (
-      <div className="space-y-4 max-w-3xl animate-in fade-in duration-300">
-        {/* FIX: Centered wrapper + Responsive font size (5px on mobile -> xs on desktop) */}
-        <div className="w-full flex justify-center">
-             <pre className="text-[5px] xs:text-[7px] sm:text-[10px] md:text-xs leading-none text-[#008f11] select-none whitespace-pre overflow-x-hidden">
-                {ASCII_ART}
-             </pre>
-        </div>
-        
-        <div className="p-4 border-l-2 border-[#00ff41] bg-[#00ff41]/5 mt-4">
-          <p className="leading-relaxed">
-            Self-taught Full Stack Developer with a unique journey from <span className="text-[#ffd700]">Microbiology</span> to <span className="text-[#ffd700]">Code</span>. 
-            Currently teaching Biology & Chemistry while building production-ready web applications.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-             <div>
-                <div className="text-[#008f11] text-sm">// EDUCATION</div>
-                <div>BSc. Microbiology, Karatina University</div>
-             </div>
-             <div>
-                <div className="text-[#008f11] text-sm">// CURRENT_ROLE</div>
-                <div>High School Teacher (Bio & Chem)</div>
-             </div>
-             <div>
-                <div className="text-[#008f11] text-sm">// LOCATION</div>
-                <div>Nairobi, Kenya</div>
-             </div>
-             <div>
-                <div className="text-[#008f11] text-sm">// INTERESTS</div>
-                <div>EdTech, Cybersecurity, DevOps</div>
-             </div>
-          </div>
-        </div>
-      </div>
-    )
-  });
-  break;
+      case 'about':
+        addToHistory({
+          type: 'output',
+          content: (
+            <div className="space-y-4 max-w-3xl animate-in fade-in duration-300">
+              {/* Centered wrapper + Responsive font size */}
+              <div className="w-full flex justify-center">
+                   <pre className="text-[5px] xs:text-[7px] sm:text-[10px] md:text-xs leading-none text-[#008f11] select-none whitespace-pre overflow-x-hidden">
+                     {ASCII_ART}
+                   </pre>
+              </div>
+              
+              <div className="p-4 border-l-2 border-[#00ff41] bg-[#00ff41]/5 mt-4">
+                <p className="leading-relaxed">
+                  Self-taught Full Stack Developer with a unique journey from <span className="text-[#ffd700]">Microbiology</span> to <span className="text-[#ffd700]">Code</span>. 
+                  Currently teaching Biology & Chemistry while building production-ready web applications.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                   <div>
+                      <div className="text-[#008f11] text-sm">// EDUCATION</div>
+                      <div>BSc. Microbiology, Karatina University</div>
+                   </div>
+                   <div>
+                      <div className="text-[#008f11] text-sm">// CURRENT_ROLE</div>
+                      <div>High School Teacher (Bio & Chem)</div>
+                   </div>
+                   <div>
+                      <div className="text-[#008f11] text-sm">// LOCATION</div>
+                      <div>Nairobi, Kenya</div>
+                   </div>
+                   <div>
+                      <div className="text-[#008f11] text-sm">// INTERESTS</div>
+                      <div>EdTech, Cybersecurity, DevOps</div>
+                   </div>
+                </div>
+              </div>
+            </div>
+          )
+        });
+        break;
+
       case 'skills':
         addToHistory({
           type: 'output',
@@ -509,49 +522,15 @@ case 'about':
 
       case '':
         break;
-        
       default:
         addToHistory({
           type: 'output',
           content: (
             <span className="text-red-400">
-              Command not found: {trimmedCmd}. Type <span className="text-[#ffd700]">'help'</span> for available commands.
+              Command not found: {trimmedCmd}.
             </span>
           )
         });
-    }
-    
-    setCurrentInput('');
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleCommand(currentInput);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (commandHistory.length > 0) {
-        const newIndex = historyIndex + 1;
-        if (newIndex < commandHistory.length) {
-          setHistoryIndex(newIndex);
-          setCurrentInput(commandHistory[commandHistory.length - 1 - newIndex]);
-        }
-      }
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      if (historyIndex > 0) {
-        const newIndex = historyIndex - 1;
-        setHistoryIndex(newIndex);
-        setCurrentInput(commandHistory[commandHistory.length - 1 - newIndex]);
-      } else if (historyIndex === 0) {
-        setHistoryIndex(-1);
-        setCurrentInput('');
-      }
-    } else if (e.key === 'Tab') {
-      e.preventDefault();
-      const match = COMMANDS.find(c => c.cmd.startsWith(currentInput.toLowerCase()));
-      if (match) {
-        setCurrentInput(match.cmd);
-      }
     }
   };
 
@@ -568,7 +547,7 @@ case 'about':
           {/* Header */}
           <header className="sticky top-0 bg-[#1a1a1a]/90 backdrop-blur-md border-b-2 border-[#00ff41] p-4 z-50">
              <div className="max-w-6xl mx-auto flex justify-between items-center">
-                <div className="flex flex-col">
+                  <div className="flex flex-col">
                   <span className="text-[#008f11] text-xs">root@portfolio:~$</span>
                   <div className="text-xl sm:text-2xl text-[#ffd700] font-bold tracking-wider min-h-[32px] flex items-center">
                     <LoopingTypewriter text="MOHAMED_JUMA" typeSpeed={150} deleteSpeed={70} pauseTime={2500} />
@@ -592,19 +571,18 @@ case 'about':
                 </div>
                 <div className="bg-[#1a1a1a] border-2 border-[#00ff41] p-6 sm:p-8 rounded-lg shadow-[0_0_20px_rgba(0,255,65,0.1)]">
    
-   <div className="w-full flex justify-center mb-6">
-   {/* Large Screen Art (Hidden on Mobile) */}
-   <pre className="hidden sm:block text-[5px] xs:text-[8px] sm:text-[10px] md:text-xs text-[#008f11] leading-none whitespace-pre select-none overflow-x-hidden">
-     {ASCII_ART}
-   </pre>
-   {/* Small Screen Art (Visible on Mobile) */}
-   <pre className="block sm:hidden text-[4px] leading-none text-[#008f11] whitespace-pre select-none overflow-x-hidden">
-     {ASCII_ART_SM}
-   </pre>
-</div>
+                   <div className="w-full flex justify-center mb-6">
+                   {/* Large Screen Art (Hidden on Mobile) */}
+                   <pre className="hidden sm:block text-[5px] xs:text-[8px] sm:text-[10px] md:text-xs text-[#008f11] leading-none whitespace-pre select-none overflow-x-hidden">
+                     {ASCII_ART}
+                   </pre>
+                   {/* Small Screen Art (Visible on Mobile) */}
+                   <pre className="block sm:hidden text-[4px] leading-none text-[#008f11] whitespace-pre select-none overflow-x-hidden">
+                     {ASCII_ART_SM}
+                   </pre>
+                </div>
 
-   <div className="text-lg leading-relaxed mb-6 min-h-[80px]">
-                    
+                   <div className="text-lg leading-relaxed mb-6 min-h-[80px]">
                      <Typewriter 
                        text="Self-taught Full Stack Developer with a unique journey from Microbiology to Code. Currently teaching Biology & Chemistry while building production-ready web applications." 
                        speed={20}
@@ -634,7 +612,7 @@ case 'about':
                   <Typewriter text="tech_stack --list" delay={200} speed={100} cursorColor="#ffd700" />
                 </div>
                 <div className="bg-[#1a1a1a] border-2 border-[#00ff41] p-6 sm:p-8 rounded-lg">
-                  <div className="space-y-8">
+                   <div className="space-y-8">
                      <div>
                        <h3 className="text-[#ffd700] mb-4 flex items-center gap-2"><Cpu size={20}/> Core Technologies</h3>
                        <div className="flex flex-wrap gap-3">
@@ -725,7 +703,6 @@ case 'about':
   return (
     <div 
       className="min-h-screen bg-[#0a0a0a] text-[#00ff41] font-mono overflow-hidden relative"
-      onClick={focusInput}
     >
       <MatrixBackground />
       
@@ -745,14 +722,12 @@ case 'about':
         {/* Scrollable Content Area */}
         <div 
           ref={scrollRef} 
-          className="flex-1 overflow-y-auto scrollbar-hide space-y-2 pb-20"
+          className="flex-1 overflow-y-auto scrollbar-hide space-y-2 pb-48 sm:pb-32" 
         >
           {/* Welcome Message */}
           <div className="mb-6 space-y-2">
             <p>Mohamed Juma Portfolio [Version 1.0.0]</p>
             <p>(c) {new Date().getFullYear()} Mohamed Juma. All rights reserved.</p>
-            <p className="pt-4">Type <span className="text-[#ffd700]">'help'</span> to view available commands.</p>
-            <p>Type <span className="text-[#ffd700]">'gui'</span> to switch to standard website view.</p>
           </div>
 
           {/* History */}
@@ -771,7 +746,7 @@ case 'about':
             </div>
           ))}
 
-          {/* Active Input Line */}
+          {/* Active Input Line (Simulated) */}
           <div className="flex items-center gap-2 text-[#00ff41]">
              <span className="text-[#ffd700] shrink-0">root@portfolio:~$</span>
              
@@ -782,32 +757,35 @@ case 'about':
                 
                 {/* Blinking Cursor */}
                 <div className="w-2.5 h-5 bg-[#00ff41] animate-pulse ml-0.5"></div>
-                
-                {/* Hidden Input for capturing typing */}
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={currentInput}
-                  onChange={(e) => setCurrentInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  className="absolute inset-0 opacity-0"
-                  autoFocus
-                  spellCheck="false"
-                  autoComplete="off"
-                />
              </div>
           </div>
           
-          {/* Mobile Keyboard Helper (optional visual cue) */}
           <div className="h-4"></div>
         </div>
 
-        {/* Hint Footer */}
-<div className="fixed bottom-0 left-0 w-full bg-[#1a1a1a] text-[#008f11] text-xs p-2 text-center border-t border-[#00ff41]/30 z-50">
-   <span className="mx-2 inline-block">[TAB] Auto-complete</span>
-   <span className="mx-2 inline-block">[↑/↓] History</span>
-   <span className="mx-2 inline-block">[GUI] Switch Mode</span>
-</div>
+        {/* Interactive Button Grid (Simulated Keyboard) */}
+        <div className="fixed bottom-0 left-0 w-full bg-[#1a1a1a] border-t border-[#00ff41]/30 z-50 p-4">
+           <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+              {BUTTONS.map((btn) => (
+                <button
+                  key={btn.cmd}
+                  onClick={() => simulateCommand(btn.cmd)}
+                  disabled={isTyping}
+                  className={`
+                    flex items-center justify-center gap-2 px-3 py-3 text-sm border 
+                    transition-all duration-200
+                    ${isTyping 
+                        ? 'border-[#008f11]/30 text-[#008f11]/50 cursor-not-allowed' 
+                        : 'border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41] hover:text-black cursor-pointer'
+                    }
+                  `}
+                >
+                  {btn.icon}
+                  {btn.label}
+                </button>
+              ))}
+           </div>
+        </div>
       </div>
     </div>
   );
