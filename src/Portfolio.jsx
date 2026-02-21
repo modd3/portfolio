@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import { Terminal, Github, Linkedin, Mail, MapPin, ExternalLink, Code, Cpu, Shield, Command } from 'lucide-react';
+import { Terminal, Github, Linkedin, Mail, MapPin, ExternalLink, Code, Cpu, Command } from 'lucide-react';
 
 /* --- DATA & CONTENT --- */
 const BOOT_SEQUENCE = [
@@ -293,6 +293,9 @@ export default function App() {
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef(null);
 
+  // Ref to prevent auto-command from running more than once
+  const autoExecuted = useRef(false);
+
   // Auto-scroll to bottom of terminal
   useLayoutEffect(() => {
     if (scrollRef.current) {
@@ -302,13 +305,13 @@ export default function App() {
 
   // Initial Auto-Type on Boot
   useEffect(() => {
-    if (!booting && mode === 'terminal' && history.length === 0) {
-        // Small delay then type 'whoami' automatically to welcome user
-        setTimeout(() => {
-            simulateCommand('whoami');
-        }, 500);
+    if (!booting && mode === 'terminal' && history.length === 0 && !autoExecuted.current) {
+      autoExecuted.current = true;
+      setTimeout(() => {
+        simulateCommand('whoami');
+      }, 500);
     }
-  }, [booting, mode]);
+  }, [booting, mode, history, simulateCommand]);
 
   const addToHistory = (content) => {
     setHistory(prev => [...prev, content]);
