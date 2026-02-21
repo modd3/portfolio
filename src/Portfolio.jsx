@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect, useCallback } from 'react';
 import { Terminal, Github, Linkedin, Mail, MapPin, ExternalLink, Code, Cpu, Command } from 'lucide-react';
 
 /* --- DATA & CONTENT --- */
@@ -292,68 +292,18 @@ export default function App() {
   const [currentInput, setCurrentInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef(null);
-
-  // Ref to prevent auto-command from running more than once
   const autoExecuted = useRef(false);
 
-  // Auto-scroll to bottom of terminal
-  useLayoutEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [history, currentInput, isTyping]);
-
-  // Initial Auto-Type on Boot
-  useEffect(() => {
-    if (!booting && mode === 'terminal' && history.length === 0 && !autoExecuted.current) {
-      autoExecuted.current = true;
-      setTimeout(() => {
-        simulateCommand('whoami');
-      }, 500);
-    }
-  }, [booting, mode, history, simulateCommand]);
-
-  const addToHistory = (content) => {
+  // Helper to add entries to terminal history – memoised
+  const addToHistory = useCallback((content) => {
     setHistory(prev => [...prev, content]);
-  };
+  }, []);
 
-  const simulateCommand = async (cmd) => {
-    if (isTyping) return;
-    setIsTyping(true);
-    
-    // Typing animation logic
-    const chars = cmd.split('');
-    let typed = '';
-    
-    // Recursive typing function
-    const typeChar = (index) => {
-      if (index < chars.length) {
-        typed += chars[index];
-        setCurrentInput(typed);
-        // Randomize typing speed slightly for realism (30-80ms)
-        setTimeout(() => typeChar(index + 1), 30 + Math.random() * 50);
-      } else {
-        // Finished typing, execute after small pause
-        setTimeout(() => {
-            handleCommand(cmd);
-            setCurrentInput('');
-            setIsTyping(false);
-        }, 300);
-      }
-    };
-    
-    typeChar(0);
-  };
-
-  const handleCommand = (cmd) => {
+  // Command processor – memoised
+  const handleCommand = useCallback((cmd) => {
     const trimmedCmd = cmd.trim().toLowerCase();
-    // Add command line to history
-    addToHistory({
-      type: 'command',
-      content: trimmedCmd
-    });
+    addToHistory({ type: 'command', content: trimmedCmd });
 
-    // Process Command
     switch (trimmedCmd) {
       case 'help':
         addToHistory({
@@ -374,9 +324,11 @@ export default function App() {
         addToHistory({ type: 'output', content: 'root@portfolio:~/mohamed_juma' });
         // Auto-trigger about after whoami for smooth intro
         setTimeout(() => {
-            if(!history.some(h => h.content?.props?.children?.[0]?.props?.children?.includes && h.content.props.children[0].props.children.includes(ASCII_ART))) {
-                handleCommand('about');
-            }
+          // Check if about has already been displayed (avoid duplicate)
+          if(!history.some(h => h.content?.props?.children?.[0]?.props?.children?.includes && 
+                h.content.props.children[0].props.children.includes(ASCII_ART))) {
+            handleCommand('about');
+          }
         }, 500);
         break;
 
@@ -535,7 +487,49 @@ export default function App() {
           )
         });
     }
-  };
+  }, [addToHistory, history]);
+
+  // Typing simulation – memoised
+  const simulateCommand = useCallback(async (cmd) => {
+    if (isTyping) return;
+    setIsTyping(true);
+    
+    const chars = cmd.split('');
+    let typed = '';
+    
+    const typeChar = (index) => {
+      if (index < chars.length) {
+        typed += chars[index];
+        setCurrentInput(typed);
+        setTimeout(() => typeChar(index + 1), 30 + Math.random() * 50);
+      } else {
+        setTimeout(() => {
+          handleCommand(cmd);
+          setCurrentInput('');
+          setIsTyping(false);
+        }, 300);
+      }
+    };
+    
+    typeChar(0);
+  }, [isTyping, handleCommand]);
+
+  // Auto-scroll to bottom
+  useLayoutEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [history, currentInput, isTyping]);
+
+  // Auto-type 'whoami' after boot (runs only once)
+  useEffect(() => {
+    if (!booting && mode === 'terminal' && history.length === 0 && !autoExecuted.current) {
+      autoExecuted.current = true;
+      setTimeout(() => {
+        simulateCommand('whoami');
+      }, 500);
+    }
+  }, [booting, mode, history, simulateCommand]);
 
   if (booting) {
     return <BootScreen onComplete={() => setBooting(false)} />;
