@@ -1,120 +1,111 @@
 %PDF-1.4
-%
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R /F3 4 0 R /F4 5 0 R /F5 6 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+<<
+/BaseFont /Times-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+<<
+/BaseFont /Times-Roman /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+>>
 endobj
 5 0 obj
-<< /Length 2065 >>
+<<
+/BaseFont /Times-Italic /Encoding /WinAnsiEncoding /Name /F4 /Subtype /Type1 /Type /Font
+>>
+endobj
+6 0 obj
+<<
+/BaseFont /Times-BoldItalic /Encoding /WinAnsiEncoding /Name /F5 /Subtype /Type1 /Type /Font
+>>
+endobj
+7 0 obj
+<<
+/Contents 12 0 R /MediaBox [ 0 0 612 792 ] /Parent 11 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+8 0 obj
+<<
+/Contents 13 0 R /MediaBox [ 0 0 612 792 ] /Parent 11 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+9 0 obj
+<<
+/PageMode /UseNone /Pages 11 0 R /Type /Catalog
+>>
+endobj
+10 0 obj
+<<
+/Author (\(anonymous\)) /CreationDate (D:20260411172715+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20260411172715+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+>>
+endobj
+11 0 obj
+<<
+/Count 2 /Kids [ 7 0 R 8 0 R ] /Type /Pages
+>>
+endobj
+12 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 2229
+>>
 stream
-BT
-/F1 11 Tf
-50 790 Td
-14 TL
-(MOHAMED JUMA) Tj
-T*
-(Nairobi, Kenya | Email: mohamj876@gmail.com) Tj
-T*
-(GitHub: github.com/modd3 | LinkedIn: linkedin.com/in/mohamed-juma-165288317) Tj
-T*
-() Tj
-T*
-(PROFESSIONAL SUMMARY) Tj
-T*
-(Full Stack Developer and Microbiology graduate building at the intersection of) Tj
-T*
-(software, education technology, and cybersecurity. Developing EduTrak, a) Tj
-T*
-(multi-tenant school management system for Kenya's CBC curriculum.) Tj
-T*
-() Tj
-T*
-(TECHNICAL SKILLS) Tj
-T*
-(Languages/Tools: JavaScript, Python, Bash, SQL, Linux CLI, Git/GitHub) Tj
-T*
-(Frameworks: React, Node.js, Express.js, Prisma ORM, REST APIs, JWT) Tj
-T*
-(Databases: PostgreSQL, MongoDB) Tj
-T*
-(Security: Kali Linux, Nmap, Gobuster, SQLMap, HackTheBox, Proxychains) Tj
-T*
-() Tj
-T*
-(PROJECTS) Tj
-T*
-(EduTrak \(In Development\) - React, Express, PostgreSQL, Prisma, JWT) Tj
-T*
-(Multi-tenant school management system supporting CBC and 8-4-4 curricula.) Tj
-T*
-() Tj
-T*
-(School Management System \(Production\) - MongoDB, Express, React, Node.js) Tj
-T*
-(Deployed platform for student records, grading, and report generation;) Tj
-T*
-(estimated 70% reduction in admin workload for end users.) Tj
-T*
-() Tj
-T*
-(AI Prompt Builder \(In Development\) - MERN, AI APIs, OAuth, REST) Tj
-T*
-(Social platform for creating, testing, versioning, and sharing AI prompts.) Tj
-T*
-() Tj
-T*
-(Proxy-Xtractor \(Stable\) - Bash, Python, Web Scraping) Tj
-T*
-(Scrapes and validates SOCKS5 proxies and configures proxychains4 workflows.) Tj
-T*
-() Tj
-T*
-(IP2Binary \(Stable\) - Bash, Python, Networking) Tj
-T*
-(CLI tool to convert IPv4 addresses to binary and back for subnetting practice.) Tj
-T*
-() Tj
-T*
-(EDUCATION) Tj
-T*
-(BSc. Microbiology, Karatina University) Tj
-T*
-() Tj
-T*
-(CERTIFICATIONS) Tj
-T*
-(HackTheBox - Active Member \(2024-Present\)) Tj
-T*
-(freeCodeCamp - Responsive Web Design \(2023\)) Tj
-T*
-(freeCodeCamp - JavaScript Algorithms & Data Structures \(2023\)) Tj
-T*
-() Tj
-T*
-(TARGET ROLES) Tj
-T*
-(Internship / Junior Full Stack Developer roles \(EdTech, Security, Dev Tools\)) Tj
-ET
-endstream
+Gatm<>Bf'b&:Vs/R&?6eNT1r^p8L<uDR/?O5e<lVj@.]&Ph6V6j:M1R4-C$U_K)pki?ZFK4S-gq\]+jb5JI)cj8e!JS=]W9#;DTs+1VuB#1+H_r,^k!4.@gXgMJmbmC;HXT&5QVE.af$2=MOCXk*V74[DsE=usgJ;/uYcb=E*E,M.tqDU8[YnL0+FQ'd](VJo]!j:dIn@ItMg\$dE>5Ol(>V<+ncK_>XoY<Tf8K("t*=tK'<lSfatQ>=@5(c)E2;8.F3k4PUbBFNZ@TSXjON)sD-6d0&@)?2G9$-V*ljR<`!9pd\!/&p`N1`'jEQE(n`:GcY<XttNqQb:lkO]TG5ct\8`F)BBA<I7GTKV_7Yf)=#n_uBe1>lN(fm_531qdL%4,K=L'_``m/nE50K>l0c#@BOd#GB;U_%PM_&3s->V?X7gBra$JSf06s/?=#+A=,&Q31Y]ISc]CWG=A/9:!B\n=;ds[;(V!2cDhJr]$`KU4)(O)\H%IjK9J\E$&dV:lMC$8B74+m)QqEMW6rOp=/41MH!n!ZR'H#G$.[k#t3/@kh1!p@QW<4t/&n71b9kN2'EE7a<7^qi4m7%I\)]V=YZ5d(WKk,Mo6EcK6Eh+d*/WgparNmD5o&Ke%]Z;q1CWZt8TTY]S)<?I7.F"hp=Xm-eQj?hagTLs1h;/VC,V9L9MZD:"Q5!Ja4-kCL'.Zdu.F8uKbh7+D'`Fr&4JB9EA4slUbVPtj;/Z1pZF#1?j=tOQnMX60ZDg+,B"?W,+V#D+_#g517N@[5(3I24N`"oTOO>L$el'fDN6MAtHRq.o9=d;K.5IoB'/DG^pRQ/%lQgm($.?/6TgnjBECqP"G@4(67TONZ4lkl;^U\@.O2P0#m(V'h@>GrT(:pWC#$05kX<bMSTd;N'eV;G36P!qhLcp%cpRFAkkt&=lUkT2jHF/n4pDFfVl"U*$S;017*a1V:,amUG8e[T0KNXX1a*8WX#B@],23)krSI.loNT3Zs4]2Qu+?HGVCi<#ILaS2Y]s$$(4d2n\>mpqT_b/s3EBTIPq5oq#O#b^?n7dF[9u/J:_FRXuXWa0tY/)E0-Gr6W\V>lCIi/4bnB$79V4J"]5aNnC!5h#+%La1-?D'6eE8V,QVtg.s(a#Qmo8[>!\\p[?+lnil@_g!H85*]8/\.W%d10Dk!d#NL"9"RsUe9>/k="R[/RlJ[9]ZCpm]IOW@4n>sOKnVMb_Xd6O?m;*30$:;7$B?&qeWbW8l$b@N*clT'kc?TOQ,I`OH:F!DPtjf4iI&L,;;2!\GSO2i5TSc_"A]2E'9Ce=VL"1Uduq:P-95g$g?1Mbqc0dX:C[1`Q'^,pUX,52<#Rs=R!b[0.1g_@kfU?`(TFS=(^PE[P=Npm>;_?.,nfp:;JoYr=VWI;2XMrlsRsDK-LOPp/3hjF!>7=Sr':X8D]eW-B]_Y^Uum/jE%$!Fm@A5b,'+CPTfh:W(^l:DL$!*?W6;Y*blWqHh_^0VG/%[\-'J3pI5C/C!_kpLE87<#0k.[i`h@QJU-.8<;de9a3]@FIH-*J%;NuSVX]!ucHuT_l!_#QfO#<]TqZ7Jo$=A4\B05#Aq-@b.R2UrbrRGBSok=B+#VYphq;i@?EeY%`=Y!6]lL3aI<W^_-55-X)Hk3>.@Nsb*N_805?q/./HLPE1Rpe-==>Zb-4-SSSZEbe6a,1M(i5s0_/@kYMgV,LWB`b$3<KNBGp-n8,kG#KDPmX_'bVIEbZKB%oBmT&@U4sR"PY;8qY:Qi]RZfr9LN)=68o7qO2Wh.oafB(;]La\Y&ha_Z`to(c4qn.VV>-fC-m6&P7/<C$,\[KDmrrJPRhh'<r\3I'+PWp16IY,FlNkL*X@WpS6HE-S[fr%g-Oq(rVaKuK5`l?gEGjU(3r`Z.APor&(D7uX@Yo()YWT]K+uQ^'K.(Y1npKMb\2\$OJ[7Fo,6sk"Ep1n6WcDapg/UuX4<7ai%UjkJ@fd=Z?)]IkEKXB#,G-KGu@\6m\#3OC->%[rb"\Mf*9\l@#_t-F]"ch"dR_<Y$>b_pt52,EI6^NfLk@e4>XS:07?qF9=FtS7FHEj29";.bR@RRa%:m-$$*sAY*Q_^D-up>5oc6*\;j.j4Zg\?1NtOLS>)-4\lG.`Z)FYGo2]7eqXFj8WS+r!M0lknI]bO$G\%54*>^ueUU6$b>U#m*L$0p%PK<O8C!I7hD[$TmPj/Kbf5EapcYrfPFBU!M*=QoX+*4G^q>~>endstream
+endobj
+13 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1822
+>>
+stream
+GauI7?$"^Z'Sc)J/'cE-dN*;r(P^cI+Y@EB$D-Kgj@7c'eC]pcOpV'`4d$rp.J5O0Y[Jj_XH-H2o:C#^$Z1:%p4&5-$t;32FM[VmSq@tA!Q<SDMU28cF13`r/k#*0j'd$,(>HII6hh5Ui;0=oq5"=6gC3)O^A7Zb.MpGKV.D4",CG%:4*Cq(B7'F.Q>`q'a$X@\iI\4G-An=6rU@YsNW1gZ^Z'$)BVu[5K`6AG")Bm2%(>H%eMO.l,`a$U6:mo@0No9U.cl%Z9t2!30-m*;]uKf0WLUc[jJE5bhr7gN@Ja3\:H.Ks19Zl'n"eXC#ol1F)c+hjV/+mj:ei=a9Q8(r9XC%^S8\oe=UL9W:,lBQZZ2Wr9%+bZ=VO2;`Y\,undYC^_/M(2_Gf[,JlVkC.4%X0N&\HB[*<]q'6Sm\#jp,#YGWR"=Y`\b>tPGLbJ]SG``$&;r.k#8Yu?Hsn;bpjQf`?&'!\1Z85Zt*D'_o09Q?QbP_,3G#^Ehh-`"#/,W4I_c'"OG^oM<s@X?-U&5_"-UJPJhc\9T6g>h`'/NA3uYV?]0o82_Xjm43C:dd<b&s8gL,#/#WR[1IRa'&qTIiOeLX0]Qd3W!N5p@#9B2-Wp?/7`"]AR]hkhKiV6G?!na#egidK73?.rHKhjMP"\GFF*EKS(g*e2p_$L?G#B(oIag>M%*/ifP?6[/.p(l+Ob\qP#@4.BR0[;IH*13aA.?S8=D?[PW"NjCn?<-bQLLG[_VuqU91HcU@rMU8c\5`V4pl<OroGXC!!QeWqC,-*kY5NL9H[-_p+JQgQ.BQdKC(pL8bpVHcNBbIr%Br$Oq`OAN9;';H2k'O6`"Wj;.+Z-K$BMpL>K9Y$^H?g1<+#br9ckJo:<B7e%M6h$lDFDOQH9OmL%$L.>3E?pr'!O,P<LTEQU(,-t"jLi3q\)(:sjN'YsV?p6%+W@5t)=[m"t@R&U,0Wjo5g@ksFP*_^'%AZ\Nm'6XHLF$.U>F9ht(1YU(<%*RR<,uR5_\BP%f(O"XEhq9&F-G9l]bElkBtZo:WtO$Q<LD@;$/OX/".c^R[/MiF=Guo6"2UL=[,)CG+!&lD"/:nUqi+o#PePN_9G9u))gT2[N+(r/jgnJi4$&BL>c6?BH%)#@qTfa\S(qF'JL(rZgUb@+^q*uH9_jF#Ba*W+25f)&_-CGL1qaiWR>(po25@$/jYiO6'#EaIJOS31:RIH;A4a#r$LFiIRfJ=T\S(:"COl:FpU#HTXf_73[9>"Vq`&\Yn%Ab^"9ZWJ_=kdl$,O?Pg)M#??)o,npN&iDLucSFH43o`B*K+s%3qp%L)AgO!j#'n;kd,.dV%*B)KKI=gCgF,)1o#lctcNE6>Zg2XT@Q1:PfCb,ZD-hg=0WrS[_j9Ki]k$:5.;H3F92^p,XfcSekhf"Xh*HmI&;"+I;H]XW:-qn`>#JO2lIRe+tLVVmDr""&F1-lHBRD.t;W2Hog;rB9&CQK@^O/#=aZ(h2&8!@PkD*ZuDcOJon'c"c>?.4h+>l!2&fNj!>_%2&:RG"T?7cf,L1)Ye59qG\o+L)kD=DB<Q((c$=71_X<9ARb0[>kDCG)Mb<JlW^:Z97%5HB5o!Vn9"=nZC'3pS;gUr6"S3VN_PNkV":"O1Y2FN6+IZ\d-qjGbY26)6I>6ds&K^ZoT11P/m]K(QHt0?idd9N;A#+)l['SJ&3p*k]>d=DbY[(\BM3lC@bGlb6pE5!B(IHeQfDHNgUGShS7djl?o^B)'Mko6%@d6V/(Q;;i>=d5%S*ic!:Z\Hm^a9Q`=+k-3"53/nBeFN#6tjIfG2sta9,o20J#(lf3h6-N6npX6~>endstream
 endobj
 xref
-0 6
+0 14
 0000000000 65535 f 
-0000000015 00000 n 
-0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000317 00000 n 
+0000000061 00000 n 
+0000000132 00000 n 
+0000000239 00000 n 
+0000000347 00000 n 
+0000000456 00000 n 
+0000000566 00000 n 
+0000000680 00000 n 
+0000000875 00000 n 
+0000001070 00000 n 
+0000001139 00000 n 
+0000001420 00000 n 
+0000001486 00000 n 
+0000003807 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<<
+/ID 
+[<cb8f6104a1c0a16125a140fc164d4937><cb8f6104a1c0a16125a140fc164d4937>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 10 0 R
+/Root 9 0 R
+/Size 14
+>>
 startxref
-2434
+5721
 %%EOF
