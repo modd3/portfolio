@@ -239,15 +239,16 @@ const BootScreen = ({ onComplete }) => {
   }, [onComplete]);
   return (
     <div className="fixed inset-0 bg-black z-50 flex flex-col items-start justify-center p-8 font-mono text-[#00ff41] overflow-hidden">
+      {/* Keep skip pinned so it never shifts as lines are added */}
+      <button
+        onClick={onComplete}
+        className="fixed top-6 right-6 text-xs text-[#008f11] border border-[#008f11]/50 px-3 py-1 hover:border-[#00ff41] hover:text-[#00ff41] transition-colors"
+      >
+        [skip →]
+      </button>
+
       <div className="max-w-3xl w-full space-y-1">
         {lines.map((line, i) => <div key={i}>{line}</div>)}
-        {/* FIX: Skip button so recruiters aren't held hostage */}
-        <button
-          onClick={onComplete}
-          className="mt-6 text-xs text-[#008f11] border border-[#008f11]/50 px-3 py-1 hover:border-[#00ff41] hover:text-[#00ff41] transition-colors"
-        >
-          [skip →]
-        </button>
       </div>
     </div>
   );
