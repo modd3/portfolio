@@ -1,0 +1,120 @@
+%PDF-1.4
+%
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2065 >>
+stream
+BT
+/F1 11 Tf
+50 790 Td
+14 TL
+(MOHAMED JUMA) Tj
+T*
+(Nairobi, Kenya | Email: mohamj876@gmail.com) Tj
+T*
+(GitHub: github.com/modd3 | LinkedIn: linkedin.com/in/mohamed-juma-165288317) Tj
+T*
+() Tj
+T*
+(PROFESSIONAL SUMMARY) Tj
+T*
+(Full Stack Developer and Microbiology graduate building at the intersection of) Tj
+T*
+(software, education technology, and cybersecurity. Developing EduTrak, a) Tj
+T*
+(multi-tenant school management system for Kenya's CBC curriculum.) Tj
+T*
+() Tj
+T*
+(TECHNICAL SKILLS) Tj
+T*
+(Languages/Tools: JavaScript, Python, Bash, SQL, Linux CLI, Git/GitHub) Tj
+T*
+(Frameworks: React, Node.js, Express.js, Prisma ORM, REST APIs, JWT) Tj
+T*
+(Databases: PostgreSQL, MongoDB) Tj
+T*
+(Security: Kali Linux, Nmap, Gobuster, SQLMap, HackTheBox, Proxychains) Tj
+T*
+() Tj
+T*
+(PROJECTS) Tj
+T*
+(EduTrak \(In Development\) - React, Express, PostgreSQL, Prisma, JWT) Tj
+T*
+(Multi-tenant school management system supporting CBC and 8-4-4 curricula.) Tj
+T*
+() Tj
+T*
+(School Management System \(Production\) - MongoDB, Express, React, Node.js) Tj
+T*
+(Deployed platform for student records, grading, and report generation;) Tj
+T*
+(estimated 70% reduction in admin workload for end users.) Tj
+T*
+() Tj
+T*
+(AI Prompt Builder \(In Development\) - MERN, AI APIs, OAuth, REST) Tj
+T*
+(Social platform for creating, testing, versioning, and sharing AI prompts.) Tj
+T*
+() Tj
+T*
+(Proxy-Xtractor \(Stable\) - Bash, Python, Web Scraping) Tj
+T*
+(Scrapes and validates SOCKS5 proxies and configures proxychains4 workflows.) Tj
+T*
+() Tj
+T*
+(IP2Binary \(Stable\) - Bash, Python, Networking) Tj
+T*
+(CLI tool to convert IPv4 addresses to binary and back for subnetting practice.) Tj
+T*
+() Tj
+T*
+(EDUCATION) Tj
+T*
+(BSc. Microbiology, Karatina University) Tj
+T*
+() Tj
+T*
+(CERTIFICATIONS) Tj
+T*
+(HackTheBox - Active Member \(2024-Present\)) Tj
+T*
+(freeCodeCamp - Responsive Web Design \(2023\)) Tj
+T*
+(freeCodeCamp - JavaScript Algorithms & Data Structures \(2023\)) Tj
+T*
+() Tj
+T*
+(TARGET ROLES) Tj
+T*
+(Internship / Junior Full Stack Developer roles \(EdTech, Security, Dev Tools\)) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000000317 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2434
+%%EOF
