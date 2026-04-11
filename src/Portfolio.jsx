@@ -460,7 +460,7 @@ export default function App() {
                 {/* FIX: CV Download button */}
                 <a
                   href="/cv.pdf"
-                  download
+                  download="Mohamed_Juma_CV.pdf"
                   className="flex items-center gap-2 px-3 py-1 border border-[#ffd700] text-[#ffd700] hover:bg-[#ffd700] hover:text-black transition-all text-sm"
                 >
                   <Download size={14} /> CV
@@ -625,7 +625,7 @@ export default function App() {
               <div className="flex justify-center">
                 <a
                   href="/cv.pdf"
-                  download
+                  download="Mohamed_Juma_CV.pdf"
                   className="flex items-center gap-3 px-8 py-4 border-2 border-[#ffd700] text-[#ffd700] hover:bg-[#ffd700] hover:text-black transition-all font-bold text-lg"
                 >
                   <Download size={20} /> Download My CV
