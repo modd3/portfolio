@@ -57,6 +57,15 @@ const ASCII_ART_SM = `
 
 const PROJECTS = [
   {
+    title: "BioTrak",
+    status: "LIVE IN PRODUCTION",
+    isLive: true,
+    desc: "Production DNA sequence analysis platform with 10 scientific modules — base composition, ORF detection, primer design, Smith-Waterman alignment, BLAST, and more. Pure-Python bioinformatics algorithms, Celery async workers, JWT auth, and AI-powered sequence interpretation via Claude. Deployed free-tier on Render + Vercel + Neon + Upstash.",
+    stack: ["React", "FastAPI", "Python", "PostgreSQL", "Redis", "Celery", "Docker"],
+    link: "https://github.com/modd3/BioTrak",
+    live: "https://bio-trak.vercel.app"
+  },
+  {
     title: "EduTrak",
     status: "IN DEVELOPMENT",
     desc: "Next-generation school management system supporting Kenya's multi-curriculum education (CBC + 8-4-4). Multi-tenant architecture allows independent operation per school — students, grades, fee tracking, and reports in one platform.",
@@ -104,7 +113,6 @@ const CERTIFICATIONS = [
   { name: "HackTheBox — Active Member", issuer: "HackTheBox", year: "2024–Present", color: "border-red-500/60 text-red-400" },
   { name: "Responsive Web Design", issuer: "freeCodeCamp", year: "2023", color: "border-[#00ff41]/60 text-[#00ff41]" },
   { name: "JavaScript Algorithms & Data Structures", issuer: "freeCodeCamp", year: "2023", color: "border-[#00ff41]/60 text-[#00ff41]" },
-  // Add more as you earn them — this section will grow
 ];
 
 const BUTTONS = [
@@ -150,11 +158,8 @@ const LoopingTypewriter = ({ text, typeSpeed = 100, deleteSpeed = 50, pauseTime 
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, text, typeSpeed, deleteSpeed, pauseTime]);
   return (
-    // relative wrapper so the invisible sizer drives the width
     <span className="relative inline-flex items-center">
-      {/* invisible text that always holds the full width */}
       <span className="invisible whitespace-nowrap" aria-hidden="true">{text}</span>
-      {/* visible text absolutely positioned over the sizer */}
       <span className="absolute left-0 inline-flex items-center whitespace-nowrap">
         {displayedText}
         <span className="w-2 h-6 md:h-8 bg-[#ffd700] ml-1 animate-pulse" />
@@ -224,7 +229,6 @@ const MatrixBackground = () => {
   return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none" style={{ zIndex: 0, opacity: 0.15 }} />;
 };
 
-// FIX: Boot screen now checks sessionStorage so it only runs once per session
 const BootScreen = ({ onComplete }) => {
   const [lines, setLines] = useState([]);
   useEffect(() => {
@@ -239,14 +243,12 @@ const BootScreen = ({ onComplete }) => {
   }, [onComplete]);
   return (
     <div className="fixed inset-0 bg-black z-50 flex flex-col items-start justify-center p-8 font-mono text-[#00ff41] overflow-hidden">
-      {/* Keep skip pinned so it never shifts as lines are added */}
       <button
         onClick={onComplete}
         className="fixed top-6 right-6 text-xs text-[#008f11] border border-[#008f11]/50 px-3 py-1 hover:border-[#00ff41] hover:text-[#00ff41] transition-colors"
       >
         [skip →]
       </button>
-
       <div className="max-w-3xl w-full space-y-1">
         {lines.map((line, i) => <div key={i}>{line}</div>)}
       </div>
@@ -259,7 +261,6 @@ const BootScreen = ({ onComplete }) => {
    ============================================================ */
 
 export default function App() {
-  // FIX: Skip boot if already seen this session
   const [booting, setBooting] = useState(() => {
     try { return !sessionStorage.getItem('portfolio_booted'); } catch { return true; }
   });
@@ -285,7 +286,6 @@ export default function App() {
         break;
       case 'whoami':
         addToHistory({ type: 'output', content: 'root@portfolio:~/mohamed_juma' });
-        // FIX: Simplified auto-trigger — just check history length
         setTimeout(() => handleCommand('about'), 500);
         break;
       case 'gui':
@@ -386,7 +386,6 @@ export default function App() {
                 <a href="https://github.com/modd3" target="_blank" rel="noreferrer" className="flex items-center gap-2 p-2 border border-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-colors">
                   <Github size={16} /> github.com/modd3
                 </a>
-                {/* FIX: Actual LinkedIn URL */}
                 <a href="https://www.linkedin.com/in/mohamed-juma-165288317" target="_blank" rel="noreferrer" className="flex items-center gap-2 p-2 border border-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-colors">
                   <Linkedin size={16} /> LinkedIn Profile
                 </a>
@@ -425,7 +424,6 @@ export default function App() {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [history, currentInput, isTyping]);
 
-  // FIX: Cleaner auto-execute — check ref only, don't inspect history content
   useEffect(() => {
     if (!booting && mode === 'terminal' && !autoExecuted.current) {
       autoExecuted.current = true;
@@ -457,7 +455,6 @@ export default function App() {
                 </div>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
-                {/* FIX: CV Download button */}
                 <a
                   href="/cv.pdf"
                   download="Mohamed_Juma_CV.pdf"
@@ -485,7 +482,6 @@ export default function App() {
                   <pre className="hidden sm:block text-[5px] xs:text-[8px] sm:text-[10px] md:text-xs text-[#008f11] leading-none whitespace-pre select-none overflow-x-hidden">{ASCII_ART}</pre>
                   <pre className="block sm:hidden text-[4px] leading-none text-[#008f11] whitespace-pre select-none overflow-x-hidden">{ASCII_ART_SM}</pre>
                 </div>
-                {/* FIX: Stronger positioning statement */}
                 <div className="text-lg leading-relaxed mb-6 min-h-[80px]">
                   <Typewriter
                     text="Full Stack Developer & Microbiology graduate building at the intersection of software, education tech, and security. I bridge wet-lab science and production code — developing EduTrak, a multi-tenant school management system for Kenya's CBC curriculum."
@@ -496,7 +492,6 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {[
                     { label: 'EDUCATION', val: 'BSc. Microbiology' },
-                    // FIX: Changed from "High School Teacher" to what employers care about
                     { label: 'SEEKING', val: 'Internship / Junior Role', highlight: true },
                     { label: 'LOCATION', val: 'Nairobi, Kenya' },
                     { label: 'FOCUS', val: 'EdTech & Security' }
@@ -511,7 +506,6 @@ export default function App() {
             </section>
 
             {/* ── SKILLS ── */}
-            {/* FIX: id was broken ("skills &") — now "skills" */}
             <section id="skills">
               <SectionHeader cmd="tech_stack --list" delay={200} />
               <div className="bg-[#1a1a1a] border-2 border-[#00ff41] p-6 sm:p-8 rounded-lg">
@@ -532,7 +526,6 @@ export default function App() {
                     bgColor="bg-[#008f11]/10"
                     textColor="text-[#008f11]"
                   />
-                  {/* FIX: Cybersecurity skills now present in GUI mode */}
                   <SkillGroup
                     icon={<Shield size={20} />}
                     title="Cybersecurity"
@@ -576,7 +569,7 @@ export default function App() {
               </div>
             </section>
 
-            {/* ── CERTIFICATIONS (NEW) ── */}
+            {/* ── CERTIFICATIONS ── */}
             <section id="certifications">
               <SectionHeader cmd="cat certifications.log" delay={200} />
               <div className="bg-[#1a1a1a] border-2 border-[#00ff41] p-6 sm:p-8 rounded-lg">
@@ -600,7 +593,6 @@ export default function App() {
             {/* ── CONTACT ── */}
             <section id="contact" className="pb-10">
               <SectionHeader cmd="contact --verbose" delay={200} />
-              {/* FIX: Clear call to action for employers */}
               <p className="text-gray-400 mb-6 text-sm">
                 Open to <span className="text-[#ffd700]">internships</span> and <span className="text-[#ffd700]">junior developer roles</span> in Full Stack, EdTech, or Cybersecurity. Based in Nairobi — available remotely.
               </p>
@@ -621,7 +613,6 @@ export default function App() {
                   <span className="text-xs mt-1 text-[#008f11] group-hover:text-black">Connect with me</span>
                 </a>
               </div>
-              {/* FIX: Second CV download CTA in contact */}
               <div className="flex justify-center">
                 <a
                   href="/cv.pdf"
